@@ -9,7 +9,7 @@ services:
     env_file: .env
     volumes:
       - mariadb:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     expose:
       - "3306"
   nginx:
@@ -25,8 +25,8 @@ services:
       dockerfile: Dockerfile
     env_file: .env
     ports:
-      - "10443:443"
-    restart: on-failure
+      - "443:443"
+    restart: always
   wordpress:
     container_name: wordpress
     env_file: .env
@@ -39,7 +39,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mariadb
-    restart: on-failure
+    restart: always
     expose: 
       - "9000"
 volumes:
